@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"bitbucket.org/mikehouston/asana-go"
+	"github.com/gipsybot/asana-go"
 )
 
 var options struct {
