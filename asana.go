@@ -66,6 +66,11 @@ type request struct {
 	Options *Options    `json:"options,omitempty"`
 }
 
+// DeleteResponse is the Response for the delete endpoint
+type DeleteResponse struct {
+	Data interface{} `json:"data"`
+}
+
 type NextPage struct {
 	Offset string `json:"offset"`
 	Path   string `json:"path"`
@@ -212,7 +217,7 @@ func (c *Client) put(path string, data, result interface{}, opts ...*Options) er
 }
 
 func (c *Client) delete(path string, opts ...*Options) error {
-	return c.do(http.MethodDelete, path, nil, nil, opts...)
+	return c.do(http.MethodDelete, path, nil, &DeleteResponse{}, opts...)
 }
 
 func (c *Client) do(method, path string, data, result interface{}, opts ...*Options) error {
