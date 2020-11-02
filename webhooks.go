@@ -49,18 +49,24 @@ func (c *Client) CreateWebhook(webhook *CreateWebhookRequest) (*Webhook, error) 
 	return result, err
 }
 
+type getWebhookData struct {
+	Workspace string `json:"workspace"`
+	Resource  string `json:"resource,omitempty"`
+}
+
 // GetWebhooks get all webhooks of workspace workspaceID
 func (c *Client) GetWebhooks(workspaceID, resource string, opts ...*Options) ([]*Webhook, *NextPage, error) {
 	c.info("Fetching webhooks")
 
 	var result []*Webhook
 
-	url := fmt.Sprintf("/webhooks?workspace=%s", workspaceID)
-	if resource != "" {
-		url += "&resource=" + resource
+	data := getWebhookData{
+		Workspace: workspaceID,
+		Resource:  resource,
 	}
+
 	// Make the request
-	nextPage, err := c.get(url, nil, &result, opts...)
+	nextPage, err := c.get("/webhooks", data, &result, opts...)
 	return result, nextPage, err
 }
 
