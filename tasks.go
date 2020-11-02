@@ -478,11 +478,19 @@ func (c *Client) QueryTasks(query *TaskQuery, opts ...*Options) ([]*Task, *NextP
 	return result, nextPage, err
 }
 
+// TaskUserListGet specifies which tasks to return from the user list GetTasks method
+type TaskUserListGet struct {
+	// Only return tasks that are either incomplete or that have been completed since this time.
+	//
+	// May be 'now' or a date string
+	CompletedSince string `url:"completed_since,omitempty"`
+}
+
 // GetTasks returns the compact list of tasks in a user’s My Tasks list.
 // The returned tasks will be in order within each assignee status group of Inbox, Today, and Upcoming.
-func (utl *UserTaskList) GetTasks(client *Client, opts ...*Options) ([]*Task, *NextPage, error) {
+func (utl *UserTaskList) GetTasks(client *Client, listGet *TaskUserListGet, opts ...*Options) ([]*Task, *NextPage, error) { // todo change listGet
 	var result []*Task
 
-	nextPage, err := client.get(fmt.Sprintf(" /user_task_lists/%s/tasks", utl.ID), nil, &result, opts...)
+	nextPage, err := client.get(fmt.Sprintf(" /user_task_lists/%s/tasks", utl.ID), listGet, &result, opts...)
 	return result, nextPage, err
 }
