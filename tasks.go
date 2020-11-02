@@ -491,6 +491,6 @@ type TaskUserListGet struct {
 func (utl *UserTaskList) GetTasks(client *Client, listGet *TaskUserListGet, opts ...*Options) ([]*Task, *NextPage, error) { // todo change listGet
 	var result []*Task
 
-	nextPage, err := client.get(fmt.Sprintf(" /user_task_lists/%s/tasks", utl.ID), listGet, &result, opts...)
+	nextPage, err := client.get(fmt.Sprintf("/user_task_lists/%s/tasks", utl.ID), listGet, &result, opts...)
 	return result, nextPage, err
 }
