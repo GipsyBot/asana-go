@@ -50,8 +50,8 @@ func (c *Client) CreateWebhook(webhook *CreateWebhookRequest) (*Webhook, error) 
 }
 
 type getWebhookData struct {
-	Workspace string `json:"workspace"`
-	Resource  string `json:"resource,omitempty"`
+	Workspace string `url:"workspace"`
+	Resource  string `url:"resource,omitempty"`
 }
 
 // GetWebhooks get all webhooks of workspace workspaceID
