@@ -477,3 +477,12 @@ func (c *Client) QueryTasks(query *TaskQuery, opts ...*Options) ([]*Task, *NextP
 	nextPage, err := c.get("/tasks", query, &result, opts...)
 	return result, nextPage, err
 }
+
+// GetTasks returns the compact list of tasks in a user’s My Tasks list.
+// The returned tasks will be in order within each assignee status group of Inbox, Today, and Upcoming.
+func (utl *UserTaskList) GetTasks(client *Client, opts ...*Options) ([]*Task, *NextPage, error) {
+	var result []*Task
+
+	nextPage, err := client.get(fmt.Sprintf(" /user_task_lists/%s/tasks", utl.ID), nil, &result, opts...)
+	return result, nextPage, err
+}
