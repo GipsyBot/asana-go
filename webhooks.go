@@ -49,6 +49,21 @@ func (c *Client) CreateWebhook(webhook *CreateWebhookRequest) (*Webhook, error) 
 	return result, err
 }
 
+// GetWebhooks get all webhooks of workspace workspaceID
+func (c *Client) GetWebhooks(workspaceID, resource string, opts ...*Options) ([]*Webhook, *NextPage, error) {
+	c.info("Fetching webhooks")
+
+	var result []*Webhook
+
+	url := fmt.Sprintf("/webhooks?workspace=%s", workspaceID)
+	if resource != "" {
+		url += "&resource=" + resource
+	}
+	// Make the request
+	nextPage, err := c.get(url, nil, &result, opts...)
+	return result, nextPage, err
+}
+
 func (w *Webhook) Delete(client *Client) error {
 	client.info("Deleting webhook %s", w.ID)
 
