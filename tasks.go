@@ -468,6 +468,14 @@ func (t *Task) CreateSubtask(client *Client, task *Task) (*Task, error) {
 	return result, err
 }
 
+// GetTask returns complete task record for a single task.
+// todo : duplicates of Fetch function
+func (c *Client) GetTask(id string, opts ...*Options) (*Task, error) {
+	var result *Task
+	_, err := c.get(fmt.Sprintf("/tasks/%s", id), nil, &result, opts...)
+	return result, err
+}
+
 // QueryTasks returns the compact task records for some filtered set of tasks.
 // Use one or more of the parameters provided to filter the tasks returned.
 // You must specify a project or tag if you do not specify assignee and workspace.
