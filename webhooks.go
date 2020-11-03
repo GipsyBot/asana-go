@@ -16,7 +16,7 @@ type WebhookFilter struct {
 
 // CreateWebhookRequest represents a request to create a new Webhook
 type CreateWebhookRequest struct {
-	Filters  []WebhookFilter `json:"filters"`
+	Filters  []WebhookFilter `json:"filters,omitempty"`
 	Target   string          `json:"target"`
 	Resource string          `json:"resource"`
 }
