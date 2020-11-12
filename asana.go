@@ -353,6 +353,8 @@ func (c *Client) parseResponse(resp *http.Response, result interface{}, requestI
 		return nil, err
 	}
 
+	log.Println(string(body))
+
 	if c.Debug {
 		resp.Header.Write(os.Stderr)
 		fmt.Fprintf(os.Stderr, "%s %s\n%s\n", requestID, resp.Status, body)
