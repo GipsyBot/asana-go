@@ -12,6 +12,12 @@ type Date time.Time
 // Jan 2 15:04:05 2006 MST
 const dateLayout = "2006-01-02"
 
+// String returns the Date in a string format
+func (d *Date) String() string {
+	s := time.Time(*d).Format(dateLayout)
+	return s
+}
+
 // MarshalJSON implements the json.Marshaller interface
 func (d *Date) MarshalJSON() ([]byte, error) {
 	s := time.Time(*d).Format(dateLayout)
