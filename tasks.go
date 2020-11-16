@@ -137,7 +137,7 @@ type TaskBase struct {
 	// Indicates whether a default task is rendered as bolded and underlined
 	// when viewed in a list of subtasks or in a user’s My Tasks.
 	// Requires that the NewSections deprecation is enabled.
-	IsRenderedAsSeparator bool `json:"is_rendered_as_separator,omitempty"`
+	IsRenderedAsSeparator *bool `json:"is_rendered_as_separator,omitempty"`
 }
 
 // Validate checks the task data and fixes any problems
