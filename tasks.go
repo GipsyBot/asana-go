@@ -263,6 +263,9 @@ type Task struct {
 	// the addProject and removeProject endpoints.
 	Projects []*Project `json:"projects,omitempty"`
 
+	// A url that points directly to the object within Asana
+	PermalinkURL string `json:"permalink_url,omitempty"`
+
 	// Create-only. Array of projects this task is associated with and the
 	// section it is in. At task creation time, this array can be used to add
 	// the task to specific sections. After task creation, these associations
