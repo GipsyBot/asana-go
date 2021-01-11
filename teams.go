@@ -32,8 +32,8 @@ func (t *Team) Fetch(client *Client) error {
 	return err
 }
 
-// UserTeams the compact records for all teams to which the given user is assigned/
-// The workspace field of oopptions is mandatory
+// UserTeams the compact records for all teams to which the given user is assigned
+// The workspace field of options is mandatory
 func (c *Client) UserTeams(uid string, options ...*Options) ([]*Team, *NextPage, error) {
 	c.trace("Listing teams of user %s in workspace ...\n", uid)
 	var result []*Team
