@@ -116,6 +116,7 @@ type Options struct {
 	Disable []Feature `json:"-" url:"-"`
 
 	// Filters
-	Workspace string `json:"workspace,omitempty" url:"workspace,omitempty"`
-	Owner     string `json:"owner,omitempty" url:"owner,omitempty"`
+	Workspace    string `json:"workspace,omitempty" url:"workspace,omitempty"`
+	Organization string `json:"organization,omitempty" url:"organization,omitempty"`
+	Owner        string `json:"owner,omitempty" url:"owner,omitempty"`
 }
