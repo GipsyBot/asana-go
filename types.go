@@ -119,5 +119,5 @@ type Options struct {
 	Workspace    string `json:"workspace,omitempty" url:"workspace,omitempty"`
 	Organization string `json:"organization,omitempty" url:"organization,omitempty"`
 	Owner        string `json:"owner,omitempty" url:"owner,omitempty"`
-	Archived     bool   `json:"archived,omitempty" url:"archived,omitempty"`
+	Archived     *bool  `json:"archived,omitempty" url:"archived,omitempty"`
 }
