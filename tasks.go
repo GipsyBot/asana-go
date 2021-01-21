@@ -472,7 +472,7 @@ func (t *Task) CreateSubtask(client *Client, task *Task) (*Task, error) {
 }
 
 // GetTask returns complete task record for a single task.
-// todo : duplicates of Fetch function
+// duplicates of Fetch function
 func (c *Client) GetTask(id string, opts ...*Options) (*Task, error) {
 	var result *Task
 	_, err := c.get(fmt.Sprintf("/tasks/%s", id), nil, &result, opts...)

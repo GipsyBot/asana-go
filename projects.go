@@ -164,6 +164,15 @@ type Project struct {
 	Team *Team `json:"team,omitempty"`
 }
 
+// GetProject returns the complete project record for a single project.
+// duplicates of Fetch function
+func (client *Client) GetProject(id string, opts ...*Options) (*Project, error) {
+	var result *Project
+
+	_, err := client.get(fmt.Sprintf("/projects/%s", id), nil, result, opts...)
+	return result, err
+}
+
 // Fetch loads the full details for this Project
 func (p *Project) Fetch(client *Client, opts ...*Options) error {
 	client.trace("Loading project details for %q", p.Name)
