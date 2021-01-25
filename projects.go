@@ -167,10 +167,10 @@ type Project struct {
 // GetProject returns the complete project record for a single project.
 // duplicates of Fetch function
 func (client *Client) GetProject(id string, opts ...*Options) (*Project, error) {
-	var result *Project
+	result := Project{}
 
-	_, err := client.get(fmt.Sprintf("/projects/%s", id), nil, result, opts...)
-	return result, err
+	_, err := client.get(fmt.Sprintf("/projects/%s", id), nil, &result, opts...)
+	return &result, err
 }
 
 // Fetch loads the full details for this Project
